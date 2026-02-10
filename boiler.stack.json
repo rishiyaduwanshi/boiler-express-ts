@@ -1,0 +1,13 @@
+{
+  "id": "boiler-express-ts",
+  "version": "1",
+  "author": "Abhinav Prakash",
+  "description": "Express boilerplate in TS with basic auth, logger, AppError and globalErrorHandler",
+  "createdAt": "2026-02-11T02:11:25.9325497+05:30",
+  "ignore": [
+    "node_modules",
+    ".git",
+    "dist",
+    "boiler.stack.json"
+  ]
+}
