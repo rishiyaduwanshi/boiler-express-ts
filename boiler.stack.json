@@ -1,5 +1,5 @@
 {
-  "id": "boiler-express-ts",
+  "id": "express-ts",
   "version": "1",
   "author": "Abhinav Prakash",
   "description": "Express boilerplate in TS with basic auth, logger, AppError and globalErrorHandler",

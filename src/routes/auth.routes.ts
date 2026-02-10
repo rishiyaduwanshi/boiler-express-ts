@@ -5,6 +5,13 @@ import {
   refreshToken,
   logout as signout,
 } from '@/controllers/auth.controller';
+import {
+  validateBody,
+  validateCookies,
+  registerSchema,
+  loginSchema,
+  refreshTokenSchema,
+} from '@/validators';
 
 const router: Router = Router();
 
@@ -13,21 +20,21 @@ const router: Router = Router();
  * @desc    Register a new user
  * @access  Public
  */
-router.post('/signup', signup);
+router.post('/signup', validateBody(registerSchema), signup);
 
 /**
  * @route   POST /auth/login
  * @desc    Login user and return JWT tokens
  * @access  Public
  */
-router.post('/login', signin);
+router.post('/login', validateBody(loginSchema), signin);
 
 /**
  * @route   POST /auth/refresh-token
  * @desc    Refresh access token using refresh token
  * @access  Public (requires refresh token in cookie)
  */
-router.post('/refresh-token', refreshToken);
+router.post('/refresh-token', validateCookies(refreshTokenSchema), refreshToken);
 
 /**
  * @route   POST /auth/logout

@@ -7,18 +7,7 @@ import jwt, { JsonWebTokenError, SignOptions } from 'jsonwebtoken';
 import { config } from '@config/index';
 import mongoose from 'mongoose';
 import { HttpStatus, TokenPair, JwtPayload as CustomJwtPayload } from '@/types/common.types';
-
-// Request body interfaces
-interface RegisterRequestBody {
-  email: string;
-  password: string;
-  name?: string;
-}
-
-interface LoginRequestBody {
-  email: string;
-  password: string;
-}
+import { RegisterInput, LoginInput } from '@/validators';
 
 // Response data interfaces
 interface UserResponseData {
@@ -66,16 +55,13 @@ const generateTokens = (userId: mongoose.Types.ObjectId): TokenPair => {
 
 // Register
 export const register = async (
-  req: Request<unknown, unknown, RegisterRequestBody>,
+  req: Request<unknown, unknown, RegisterInput>,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
+    // Validation already done by Zod middleware
     const { email, password, name } = req.body;
-
-    if (!email || !password) {
-      throw new BadRequestError('Email and password are required');
-    }
 
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
@@ -104,16 +90,13 @@ export const register = async (
 
 // Login
 export const login = async (
-  req: Request<unknown, unknown, LoginRequestBody>,
+  req: Request<unknown, unknown, LoginInput>,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
+    // Validation already done by Zod middleware
     const { email, password } = req.body;
-
-    if (!email || !password) {
-      throw new BadRequestError('Email and password are required');
-    }
 
     // Need to explicitly select password since it's excluded by default
     const user = await UserModel.findOne({ email }).select('+password');

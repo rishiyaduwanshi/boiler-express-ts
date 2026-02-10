@@ -1,5 +1,5 @@
 {
-  "name": "boiler",
+  "name": "boiler-express-ts",
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",
@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "bun run --hot server.ts",
     "start": "bun run server.ts",
-    "pro" : "bun run dist/server.js",
+    "pro": "bun run dist/server.js",
     "build": "bun build server.ts --outdir ./dist --target bun"
   },
   "keywords": [],
@@ -24,7 +24,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.23.0",
     "morgan": "^1.10.1",
-    "winston": "^3.18.3"
+    "winston": "^3.18.3",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
